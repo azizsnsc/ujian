@@ -85,7 +85,7 @@ class Login_model extends CI_model
 						$user['role'][] = ['id'=>$value['user_role_id'],'title'=>$role[$value['user_role_id']]];
 					}
 					//$this->db->select('nama,gender,photo');
-					//$user_profile = $this->db->get_where('user_profile',['user_id'=>$user['id']])->row_array();
+					$user_profile = $this->db->get_where('user_profile',['user_id'=>$user['id']])->row_array();
 					foreach ($user_profile as $key => $value) 
 					{
 						$user[$key] = $value;
