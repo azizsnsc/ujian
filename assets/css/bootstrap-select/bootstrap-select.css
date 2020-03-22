@@ -1,3 +1,4 @@
+
 /*!
  * Bootstrap-select v1.11.2 (http://silviomoreto.github.io/bootstrap-select)
  *
@@ -10,7 +11,7 @@ select.selectpicker {
   display: none !important;
 }
 .bootstrap-select {
-  width: 220px \0;
+  width: 520px \0;
   /*IE9 and below*/
 }
 .bootstrap-select > .dropdown-toggle {

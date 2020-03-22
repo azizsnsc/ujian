@@ -8,7 +8,7 @@ class Login_model extends CI_model
 		{
 			$curent_url = base_url($_SERVER['PATH_INFO']);
 			$curent_url = urlencode($curent_url);
-			redirect(base_url('login?redirect_to='.$curent_url));
+			redirect(base_url('satpam?redirect_to='.$curent_url));
 		}else{
 			if(!empty($_COOKIE[base_url().'_username']))
 			{

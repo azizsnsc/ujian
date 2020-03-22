@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+include "fungsitanggal.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -13,10 +14,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	.tabel {
 		width: 98%; margin: 0 auto;
 		 font-size: 14px;
-		padding: 1px;
+		
 		color: #666;
   		text-shadow: 1px 1px 0px #fff;
-  		background: #eaebec;
+  		background: #000;
  		border: #ccc 1px solid;
 	}
 .tabel th {
@@ -44,42 +45,54 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </style>
 <body onload="window.print()">
 <table width="100%">
-	<td align="center" width="20%"><img src="<?php echo base_url('assets/img/smk.jpg'); ?>" width=85px;></td><td align="center" width="60%"><span style="font-size: 16px;">DAFTAR HADIR UJIAN SEKOLAH BERBASIS ON-LINE</span><br/><span style="font-size: 26px; font-weight: bold;">SMK NEGERI 1 BANGSRI</span><br><span style="font-size: 12px; font-style: italic;">Jalan K.H. Achmad Fauzan No. 17 Krasak Bangsri Jepara</span></td><td width="20%"></td>
+	<td align="center" width="20%"><img src="<?php echo base_url('assets/img/smk.jpg'); ?>" width=85px;></td><td align="center" width="60%"><span style="font-size: 16px;">DAFTAR HADIR UJIAN SEKOLAH BERBASIS ON-LINE</span><br/><span style="font-size: 30px; font-weight: bold;">SMK NEGERI 1 BANGSRI</span><br><span style="font-size: 12px; font-style: italic;">Jalan K.H. Achmad Fauzan No. 17 Krasak Bangsri Jepara</span></td><td width="20%"></td>
 </table>
 <hr style="width: 98%;">
 <?php                     
-   foreach ($df as $k) {     
+   foreach ($ssoal as $k) {     
 ?>
 <table style="width: 98%; margin: 0 auto; font-size: 15px;"><tr><td width="150px;">Mapel</td><td width="1%">:</td><td><?php echo $k->NamaSoal; ?></td></tr>
-	<tr><td>Kelas</td><td>:</td><td><?php echo $kelasnya; ?></td></tr>
-	<tr><td>Jadwal Mengerjakan</td><td>:</td><td><?php echo $k->tanggal_uji." ".$k->waktu_awal." s/d ".$k->waktu_akhir; ?></td></tr>
+	<tr><td>Kelas</td><td>:</td><td><?php echo $kela; ?></td></tr>
+	<tr><td>Jadwal Mengerjakan</td><td>:</td><td><?php echo tgl_indo($k->tanggal_uji)." | ".$k->waktu_awal." s/d ".$k->waktu_akhir; ?></td></tr>
 </table>
-<?php } ?>
+
 <br>
 <table class="tabel">
 	<thead>
 	<tr><th>NO</th><th>No. Peserta</th><th>Nama</th><th>Mulai Mengerjakan</th><th>Ttd</th></tr>
 	</thead>
 	                                <tbody>
-                                    <?php
+                                    <?php 
+                                    if (!empty($absen)) {
                                     $no=1;
-                                    $noo = $jum+1;
-                                    if (empty($jum)) {
-                                        redirect('daftarhadir');
-                                    }
-                                    foreach ($keli as $ke) {
-                                    echo "<tr><td>$no</td><td>$ke->no_peserta</td><td align='left'>$ke->nama_siswa</td><td>".$ke->JamMengerjakan."</td><td>Ok</td></tr>";
-                                    $no++;
-                                }
-                                    $ad = $this->db->query('select*from siswa where siswa.kelas="'.$ke->kelas.'" AND NOT EXISTS(SELECT * FROM absensi WHERE absensi.IDSoal="'.$k->IDSoal.'" AND siswa.IDSiswa = absensi.IDSiswa)')->result();
-                                        foreach ($ad as $kdd) {
-                                        echo "<tr><td>$noo</td><td>$kdd->no_peserta</td><td align='left'>$kdd->nama_siswa</td><td></td><td> </td></tr>";
-                                         $noo++; 
-                                         
-                                }
-                                ?>
-                                    
+                                    foreach ($absen as $abs) { ?>
+                                    <tr>
+                                        <td><?php echo $no; ?></td>
+                                        <td><?php echo $abs->no_peserta; ?></td>
+                                        <td align="left"><?php echo $abs->nama_siswa; ?></td>
+                                        <td><?php echo $abs->JamMengerjakan; ?></td>
+                                        <td>ttd</td>
+                                    </tr>
+                                <?php $no++; } }  ?>
+                                <?php  
+                                if (!empty($belum)) {
+                                $noo=$jb + 1;
+                                foreach ($belum as $bel) { ?>
+                                    <tr>
+                                        <td><?php echo $noo; ?></td>
+                                        <td><?php echo $bel->no_peserta; ?></td>
+                                        <td align="left"><?php echo $bel->nama_siswa; ?></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                <?php $noo++; } }?>
                                 </tbody>
 </table>
+<table width="30%" style="margin: 0 auto; float: right; font-size: 18px;">
+  <tr><td style="padding-top: 40px;">Bangsri, <?php echo tgl_indo($k->tanggal_uji); ?></td></tr>
+  <tr><td style="padding-top: 10px;">..............................</td></tr>
+  <tr><td style="padding-top: 80px;">..............................</td></tr>
+</table>
+<?php } ?>
 </body>
 </html>
