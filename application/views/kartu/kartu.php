@@ -3,7 +3,7 @@ foreach ($data as $key => $value)
 {
 	if(!empty($value['kelas']))
 	{
-		$image = base_url('assets/foto/images/2020/'.strtolower(str_replace(' ','_',$value['kelas'])).'/'.str_replace(' ','_',strtolower($value['nama_siswa']).'.jpg'));
+		$image = base_url('assets/foto/images/2020/'.strtolower(str_replace(' ','_',$value['kelas'])).'/'.str_replace("'",'',str_replace(' ','_',strtolower($value['nama_siswa']).'.jpg')));
 		if(empty($image))
 		{
 			?>
