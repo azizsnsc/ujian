@@ -6,6 +6,7 @@ class Kartu extends CI_Controller{
 		$this->load->model('kartu_model');
 		$kelas = $this->input->get('kelas');
 		$siswa = $this->input->get('siswa');
+		$data['IDSiswa'] = $siswa;
 		$data['siswa'] = $this->kartu_model->get_siswa($kelas,$siswa);
 		$data['kelas'] = $this->kartu_model->get_kelas($kelas);
 		$data['mapel'] = $this->kartu_model->mapel();;

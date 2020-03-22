@@ -87,7 +87,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
     </div>
     </form>
-
+    <br>
+    <div class="form-element-area">
+        <div style="padding: 10px; background: white; width: 95%; margin: 0 auto;">
+            <div class="row">
+                    <div class="col-xs-12">
+                        <a href="<?php echo base_url('kartu') ?>" class="btn btn-success"><i class="fa fa-search"></i> Cari Kartu</a>
+                    </div>
+            </div>
+        </div>
+    </div>
         <div class="footer-copyright-area" >
         <div class="container">
             <div class="row">

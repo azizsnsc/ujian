@@ -94,7 +94,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div style="padding: 10px; background: white; width: 95%; margin: 0 auto;">
 			<div class="row">
 				<div class="col-xs-12">
-					<?php $this->load->view('kartu/kartu',['data'=>$siswa]) ?>
+					<?php if (!empty($IDSiswa)): ?>
+						<?php $this->load->view('kartu/kartu',['data'=>$siswa]) ?>
+					<?php endif ?>
 				</div>
 			</div>
 		</div>
