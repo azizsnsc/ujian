@@ -13,36 +13,51 @@ class Daftarhadir extends CI_Controller {
 
 	public function index()
 	{
-
-        
-        $data['kel'] = $this->db->query("select*from siswa group by kelas")->result();
+        $pos = $this->input->post();
+      if(!empty($pos['datanya'])) {
+         $data['kela'] = $pos['kelas'];
+         $data['idsoal'] = $pos['IDSoal'];
+         $data['kel'] = $this->db->query("select kelas from siswa group by kelas")->result();
+         $data['soal'] = $this->db->query("select*from soal where IDSoal !='".$pos['IDSoal']."'")->result();
+         $data['ssoal'] = $this->db->query("select*from soal where IDSoal ='".$pos['IDSoal']."'")->result();
+         $data['skelas'] = "<option value='".$pos['kelas']."'>".$pos['kelas']."</option>";
+         //$data['skelas'] = $this->db->query("select kelas from siswa where kelas !='".$pos['kelas']."' group by kelas")->result();
+         //$data['dsoal'] = $this->db->query("select*from soal where IDSoal='".."'")->result();
+         $bh = $this->db->query("select*from absensi,siswa where absensi.IDSiswa=siswa.IDSiswa AND absensi.IDSoal='".$pos['IDSoal']."'");
+         $data['absen'] = $bh->result();
+         $data['belum'] = $this->db->query('select*from siswa where siswa.kelas="'.$pos['kelas'].'" AND NOT EXISTS(SELECT * FROM absensi WHERE absensi.IDSoal="'.$pos['IDSoal'].'" AND siswa.IDSiswa = absensi.IDSiswa)')->result();
+         $data['jb']= $bh->num_rows();
+        } else {
+        $data['kela'] = "";
+        $data['idsoal'] = "";
+        $data['kel'] = $this->db->query("select kelas from siswa group by kelas")->result();
         $data['soal'] = $this->db->query("select*from soal")->result();
+        $data['ssoal'] = "";
+        $data['skelas'] = "";
+        //$data['dsoal'] = "";
+        $data['absen'] = "";
+        $data['belum'] = "";
+        $data['jb'] = "";
+        $bh="";
+        }
         $data['halaman'] = "daftar";
 		$this->load->view('untukadmin', $data);
 	}
 
-    public function jik()
-    {
-        $pos = $this->input->post();
-            $soal = $this->input->post('Soal');
-            $data['df'] = $this->db->get_where('soal', ['IDSoal'=>$soal])->result();
-            $kelas = $this->input->post('kelas');
-           // $data['keli'] = $this->db->get_where('absensi', ['kelas'=>$kelas])->result();
-            $data['keli'] = $this->db->query("select*from absensi,siswa where absensi.IDSiswa=siswa.IDSiswa AND absensi.IDSoal='".$soal."' AND absensi.kelas='".$kelas."'")->result();
-            $data['jum'] = $this->db->query("select*from absensi,siswa where absensi.IDSiswa=siswa.IDSiswa AND absensi.IDSoal='".$soal."' AND absensi.kelas='".$kelas."'")->num_rows();
-        $data['halaman'] = "daftar2";
-        $this->load->view('untukadmin', $data);
-    }
-
     public function cetak(){
         $pos = $this->input->post();
-            $soal = $this->input->post('Soal');
-            $data['df'] = $this->db->get_where('soal', ['IDSoal'=>$soal])->result();
-            $kelas = $this->input->post('kelas');
-            $data['kelasnya'] = $this->input->post('kelas');
-           // $data['keli'] = $this->db->get_where('absensi', ['kelas'=>$kelas])->result();
-            $data['keli'] = $this->db->query("select*from absensi,siswa where absensi.IDSiswa=siswa.IDSiswa AND absensi.IDSoal='".$soal."' AND absensi.kelas='".$kelas."'")->result();
-            $data['jum'] = $this->db->query("select*from absensi,siswa where absensi.IDSiswa=siswa.IDSiswa AND absensi.IDSoal='".$soal."' AND absensi.kelas='".$kelas."'")->num_rows();
+         $data['kela'] = $pos['kelas'];
+         $data['idsoal'] = $pos['IDSoal'];
+         $data['kel'] = $this->db->query("select kelas from siswa group by kelas")->result();
+         $data['soal'] = $this->db->query("select*from soal where IDSoal !='".$pos['IDSoal']."'")->result();
+         $data['ssoal'] = $this->db->query("select*from soal where IDSoal ='".$pos['IDSoal']."'")->result();
+         $data['skelas'] = "<option value='".$pos['kelas']."'>".$pos['kelas']."</option>";
+         //$data['skelas'] = $this->db->query("select kelas from siswa where kelas !='".$pos['kelas']."' group by kelas")->result();
+         //$data['dsoal'] = $this->db->query("select*from soal where IDSoal='".."'")->result();
+         $bh = $this->db->query("select*from absensi,siswa where absensi.IDSiswa=siswa.IDSiswa AND absensi.IDSoal='".$pos['IDSoal']."'");
+         $data['absen'] = $bh->result();
+         $data['belum'] = $this->db->query('select*from siswa where siswa.kelas="'.$pos['kelas'].'" AND NOT EXISTS(SELECT * FROM absensi WHERE absensi.IDSoal="'.$pos['IDSoal'].'" AND siswa.IDSiswa = absensi.IDSiswa)')->result();
+         $data['jb']= $bh->num_rows();
         $this->load->view('cetak', $data);
     }
 
