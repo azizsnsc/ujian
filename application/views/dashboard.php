@@ -99,7 +99,7 @@ date_default_timezone_set('Asia/Jakarta');
                 var s = addZero(d.getSeconds());
                 x.innerHTML = h + ":" + m + ":" + s;
               }
-              jam();
+              // jam();
         </script>
 <body onload="setInterval(jam,1000)">
     <!--[if lt IE 8]>
