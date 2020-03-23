@@ -81,9 +81,25 @@ date_default_timezone_set('Asia/Jakarta');
                 }
             }
 //            membuat fungsi jam untuk memanggul file jam.php
-            function jam(){
-                getData("<?php echo base_URL('dashboard/jam') ?>","jam")
-            }
+            // function jam(){
+            //     getData("<?php echo base_URL('dashboard/jam') ?>","jam")
+            // }
+            function addZero(i) {
+                if (i < 10) {
+                  i = "0" + i;
+                }
+                return i;
+              }
+
+              function jam() {
+                var d = new Date();
+                var x = document.getElementById("jam");
+                var h = addZero(d.getHours());
+                var m = addZero(d.getMinutes());
+                var s = addZero(d.getSeconds());
+                x.innerHTML = h + ":" + m + ":" + s;
+              }
+              jam();
         </script>
 <body onload="setInterval(jam,1000)">
     <!--[if lt IE 8]>
