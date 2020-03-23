@@ -64,7 +64,10 @@ date_default_timezone_set('Asia/Jakarta');
     <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/toast/jquery.toast.min.css'?>"/>
     <link rel="stylesheet" href="<?php echo base_url().'assets/css/bootstrap-select/bootstrap-select.css'?>">
 </head>
+<<<<<<< HEAD
  
+=======
+>>>>>>> ebb1df2e0ce8fc3ee52f70efb34def811566f766
 <body>
     <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>

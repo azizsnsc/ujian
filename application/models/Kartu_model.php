@@ -175,6 +175,16 @@ class kartu_model extends CI_Model{
 				'rpl' => 'Fisika',
 				'tbsm' => 'Fisika',
 				'akl' => 'Ekonomi Bisnis',
+			),
+			array(
+				'no' => '6',
+				'hari' => 'Senin, 30 Maret 2020',
+				'pukul' => '07.30 - 09.00',
+				'otkp' => 'Administrasi Umum',
+				'bdp' => 'Administrasi Umum',
+				'rpl' => '',
+				'tbsm' => '',
+				'akl' => 'Administrasi Umum',
 			)
 		);
 		return $mapel;

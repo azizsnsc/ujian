@@ -40,11 +40,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 
 
 <!-- WAKTU MUNDUR area End -->
 
 
+=======
+>>>>>>> ebb1df2e0ce8fc3ee52f70efb34def811566f766
     <form method="post" action="<?php echo base_URL('dashboard/cari') ?>">
     <div class="form-element-area">
             <div style="padding: 10px; background: white; width: 95%; margin: 0 auto;">
@@ -98,7 +101,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div style="padding: 10px; background: white; width: 95%; margin: 0 auto;">
             <div class="row">
                     <div class="col-xs-12">
-                        <a href="<?php echo base_url('kartu') ?>" class="btn btn-success"><i class="fa fa-search"></i> Cari Kartu</a>
+                        <a href="<?php echo base_url('kartu') ?>" class="btn btn-success"><i class="fa fa-search"></i> Cari Kartu</a> <span class="badge badge-warning">Cari Kartu ketika kamu belum mempunyai kartu saja</span>
                     </div>
             </div>
         </div>
