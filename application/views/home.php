@@ -261,7 +261,7 @@ var x = setInterval(function() {
         <div style="padding: 10px; background: white; width: 95%; margin: 0 auto;">
             <div class="row">
                     <div class="col-xs-12">
-                        <a href="<?php echo base_url('kartu') ?>" class="btn btn-success"><i class="fa fa-search"></i> Cari Kartu</a>
+                        <a href="<?php echo base_url('kartu') ?>" class="btn btn-success"><i class="fa fa-search"></i> Cari Kartu</a> <span class="badge badge-warning">Cari Kartu ketika kamu belum mempunyai kartu saja</span>
                     </div>
             </div>
         </div>
