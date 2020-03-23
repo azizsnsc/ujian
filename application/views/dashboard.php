@@ -64,44 +64,7 @@ date_default_timezone_set('Asia/Jakarta');
     <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/toast/jquery.toast.min.css'?>"/>
     <link rel="stylesheet" href="<?php echo base_url().'assets/css/bootstrap-select/bootstrap-select.css'?>">
 </head>
-        <script>
-//            membuat objek XMLHttpRequest
-            var xmlHttp = new XMLHttpRequest();
-//            membuat fungsi getData untuk memanggil file php
-            function getData(source,id){
-                if(xmlHttp != null){
-                    var o = document.getElementById(id);
-                    xmlHttp.open("GET", source);
-                    xmlHttp.onreadystatechange = function(){
-                        if(xmlHttp.readyState == 4 && xmlHttp.status == 200){
-                            o.innerHTML = xmlHttp.responseText;
-                        }
-                    }
-                    xmlHttp.send(null);
-                }
-            }
-//            membuat fungsi jam untuk memanggul file jam.php
-            // function jam(){
-            //     getData("<?php echo base_URL('dashboard/jam') ?>","jam")
-            // }
-            function addZero(i) {
-                if (i < 10) {
-                  i = "0" + i;
-                }
-                return i;
-              }
-
-              function jam() {
-                var d = new Date();
-                var x = document.getElementById("jam");
-                var h = addZero(d.getHours());
-                var m = addZero(d.getMinutes());
-                var s = addZero(d.getSeconds());
-                x.innerHTML = h + ":" + m + ":" + s;
-              }
-              // jam();
-        </script>
-<body onload="setInterval(jam,1000)">
+<body>
     <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
