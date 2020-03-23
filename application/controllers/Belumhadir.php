@@ -23,7 +23,9 @@ class Belumhadir extends CI_Controller {
     {
         $uri = $this->uri->segment('3');
         $data['soal'] = $this->db->query("select*from soal where IDSoal='$uri'")->result();
-        $data['absen'] = $this->db->query("select*from absensi,siswa where absensi.IDSiswa=siswa.IDSiswa AND absensi.IDSoal='$uri'")->result();
+        $bab = $this->db->query("select*from absensi,siswa where absensi.IDSiswa=siswa.IDSiswa AND absensi.IDSoal='$uri'");
+        $data['absen'] = $bab->result();
+        $data['dabsen'] = $bab->num_rows();
         $data['halaman'] = "b_belumhadir";
         $this->load->view('untukadmin', $data);
     }

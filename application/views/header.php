@@ -58,6 +58,24 @@ date_default_timezone_set('Asia/Jakarta');
                             <?php } ?>  
                                 </ul>
                                 </li>
+                            <li <?php if($uri=='belumhadir') { echo 'class="active"'; } else { echo ""; } ?>>
+                                <a data-toggle="tab" href="#Rekap"><i class="notika-icon notika-form"> </i> Rekap Daftar Hadir Semua Kelas</a>
+                                <ul class="collapse dropdown-header-top">
+                                      <?php
+                            $tgl = date('Y-m-d');
+                                    $jam = date("H:i:s");
+                                    $ab = $this->db->query("select*from soal where tanggal_uji >= '$tgl'")->result();
+                                    if (empty($ab)) {
+                                        echo "<li style='padding:10px;'>Tidak Mapel Aktif</li>";
+                                    } else {
+                                        echo "<li><i style='padding-left: 20px;'>Pilih Mapel Aktif :</i></li>";
+                                    }
+                                    foreach ($ab as $kb) {
+                            ?>
+                                <li><a href="<?php echo base_URL().'belumhadir/mapel/'.$kb->IDSoal; ?>" target="_blank"><?php echo $kb->NamaSoal; ?></a></li>
+                            <?php } ?>  
+                                </ul>
+                                </li>
                             </ul>
                         </nav>
                     </div>
@@ -85,6 +103,9 @@ date_default_timezone_set('Asia/Jakarta');
                                 <li <?php if($uri=='belumhadir') { echo 'class="active"'; } else { echo ""; } ?>>
                                 <a data-toggle="tab" href="#Belum"><i class="notika-icon notika-form"></i>Belum Ngisi Daftar Hadir</a>
                                 </li>
+                                <li>
+                                <a data-toggle="tab" href="#Rekap"><i class="notika-icon notika-form"></i>Rekap Daftar Hadir</a>
+                                </li>
                     </ul>
                        <div class="tab-content custom-menu-content">
                         <div id="Belum" class="tab-pane in notika-tab-menu-bg animated flipInX">
@@ -101,6 +122,18 @@ date_default_timezone_set('Asia/Jakarta');
                                     foreach ($ab as $kb) {
                             ?>
                                 <li><a href="<?php echo base_URL()."belumhadir/mapel/".$kb->IDSoal; ?>"><?php echo $kb->NamaSoal; ?></a></li>
+                            <?php } ?>
+                                
+                            </ul>
+                        </div>
+                        <div id="Rekap" class="tab-pane in notika-tab-menu-bg animated flipInX">
+                            <ul class="notika-main-menu-dropdown">
+                            <?php
+                                    $aab = $this->db->query("select*from soal where tanggal_uji <= '$tgl'")->result();
+                                        echo "<li><i style='padding-left: 20px;'>Pilih Mapel :</i></li>";
+                                    foreach ($aab as $kkb) {
+                            ?>
+                                <li><a href="<?php echo base_URL()."belumhadir/mapel/".$kkb->IDSoal; ?>"><?php echo $kkb->NamaSoal; ?></a></li>
                             <?php } ?>
                                 
                             </ul>

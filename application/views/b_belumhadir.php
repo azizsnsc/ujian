@@ -18,7 +18,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-3">
+                                <div class="breadcomb-report">
+                                    <h3>  <?php 
+                                        echo "<span style='color:green;'> ".$dabsen." </span> | ";
+                                        $dsis = $this->db->get('siswa')->num_rows();
+                                        $dtab = $dsis - $dabsen;
+                                        echo "<span style='color:red;'> ".$dtab." </span> ";
+
+                                        ?></h3>
+                                        <p>Hijau (Sudah Absen) Merah (Belum Absen)</p>
+                                </div>
+                            </div>
+                        </div>                       
                     </div>
                 </div>
             </div>

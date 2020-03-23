@@ -23,7 +23,7 @@ class Daftarhadir extends CI_Controller {
          $data['skelas'] = "<option value='".$pos['kelas']."'>".$pos['kelas']."</option>";
          //$data['skelas'] = $this->db->query("select kelas from siswa where kelas !='".$pos['kelas']."' group by kelas")->result();
          //$data['dsoal'] = $this->db->query("select*from soal where IDSoal='".."'")->result();
-         $bh = $this->db->query("select*from absensi,siswa where absensi.IDSiswa=siswa.IDSiswa AND absensi.IDSoal='".$pos['IDSoal']."' AND absensi.kelas='".$pos['kelas']."'");
+         $bh = $this->db->query("select*from absensi,siswa where absensi.IDSiswa=siswa.IDSiswa AND absensi.IDSoal='".$pos['IDSoal']."' AND absensi.kelas='".$pos['kelas']."' order by siswa.IDSiswa ASC");
          $data['absen'] = $bh->result();
          $data['belum'] = $this->db->query('select*from siswa where siswa.kelas="'.$pos['kelas'].'" AND NOT EXISTS(SELECT * FROM absensi WHERE absensi.IDSoal="'.$pos['IDSoal'].'" AND absensi.kelas="'.$pos['kelas'].'" AND siswa.IDSiswa = absensi.IDSiswa)')->result();
          $data['jb']= $bh->num_rows();
@@ -54,7 +54,7 @@ class Daftarhadir extends CI_Controller {
          $data['skelas'] = "<option value='".$pos['kelas']."'>".$pos['kelas']."</option>";
          //$data['skelas'] = $this->db->query("select kelas from siswa where kelas !='".$pos['kelas']."' group by kelas")->result();
          //$data['dsoal'] = $this->db->query("select*from soal where IDSoal='".."'")->result();
-         $bh = $this->db->query("select*from absensi,siswa where absensi.IDSiswa=siswa.IDSiswa AND absensi.IDSoal='".$pos['IDSoal']."' AND absensi.kelas='".$pos['kelas']."'");
+         $bh = $this->db->query("select*from absensi,siswa where absensi.IDSiswa=siswa.IDSiswa AND absensi.IDSoal='".$pos['IDSoal']."' AND absensi.kelas='".$pos['kelas']."' order by siswa.IDSiswa ASC");
          $data['absen'] = $bh->result();
          $data['belum'] = $this->db->query('select*from siswa where siswa.kelas="'.$pos['kelas'].'" AND NOT EXISTS(SELECT * FROM absensi WHERE absensi.IDSoal="'.$pos['IDSoal'].'" AND absensi.kelas="'.$pos['kelas'].'" AND siswa.IDSiswa = absensi.IDSiswa)')->result();
          $data['jb']= $bh->num_rows();
